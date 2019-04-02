@@ -20,10 +20,26 @@ function output(text) {
 // **************************************
 
 function getFile(file) {
-	// return ??
+	return new Promise(resolve => {
+		fakeAjax(file, resolve);
+	})
 }
 
 // request all files concurrently
-// ?? = getFile("file1");
-// ?? = getFile("file2");
-// ?? = getFile("file3");
+p1 = getFile("file1");
+p2 = getFile("file2");
+p3 = getFile("file3");
+
+p1
+.then(output)
+.then(() => p2)
+.then(output)
+.then(() => p3)
+.then(output)
+.then(() => console.log('Complete!'));
+
+
+// Promise.all([p1, p2, p3]).then(function(args) {
+// 	args.forEach(output);
+// 	output('Complete!')
+// });
