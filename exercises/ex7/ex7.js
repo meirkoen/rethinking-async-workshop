@@ -32,7 +32,15 @@ function getFile(file) {
 // }
 
 
-// ASQ().runner(function *loadFiles(){
+ASQ().runner(function *loadFiles(){
 	// request all files concurrently
 
-// });
+	let f1 = getFile('file1');
+	let f2 = getFile('file2');
+	let f3 = getFile('file3');
+
+	output(yield f1);
+	output(yield f2);
+	output(yield f3);
+	output('Complete!');
+});
